@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 金额补充保留2位小数点
+        function zero(num){
+            // 是否为整数
+            // 如果是2位或大于2位的数
+            // let newNum = Number(num.toString().match(/^\d+(?:\.\d{0,2})?/)) // 输出结果为 15.77,不能用于整数如 10 必须写为10.0000
+            // console.log(newNum)
+        }
+
+        function formatNum(num,n){  
+            //参数说明：num 要格式化的数字 n 保留小数位      
+                num = String(num.toFixed(n));      
+            var re = /(-?\d+)(\d{3})/;      
+
+            while(re.test(num)) {  
+
+                    num = num.replace(re,"$1,$2");  
+
+            }  
+
+            return num;  
+
+        }   
+
+        zero(1200.01999)
+        console.log(formatNum(100,2))
+    </script>
+</body>
+</html>

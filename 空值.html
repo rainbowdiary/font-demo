@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.15/lodash.js"></script> -->
+    <script src="../lodash源码.js"></script>
+</head>
+<body>
+    <script>
+        /* 
+        js中空值： undefined,null,false,"",0,
+
+        []:空数组转换为boolean为true
+        []==true 为false，因为转换为Number为0
+        */
+
+        // 判断是否为空数组
+        /* 方法1: 使用lodash isEmply */
+       var a = [];
+       console.log(_.isEmpty(a))
+    </script>
+</body>
+</html>
