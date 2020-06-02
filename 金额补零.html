@@ -1,37 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <script>
-        // 金额补充保留2位小数点
-        function zero(num){
-            // 是否为整数
-            // 如果是2位或大于2位的数
-            // let newNum = Number(num.toString().match(/^\d+(?:\.\d{0,2})?/)) // 输出结果为 15.77,不能用于整数如 10 必须写为10.0000
-            // console.log(newNum)
+      /**
+       * 四舍五入保留n个小数点，如果是整数加上n个小数位
+       * num： 要格式化的数字
+       * n： 需要保留的小数位
+       */
+      function formatNum(num, n) {
+        num = String(num.toFixed(n));
+        var re = /(-?\d+)(\d{3})/;
+        //  /一个或者0个负号 至少一个整数 三个整数---这个是不是要加个.----/(-?\d+).(\d{3})//
+        while (re.test(num)) {
+          num = num.replace(re, "$1,$2");
         }
+        return num;
+      }
 
-        function formatNum(num,n){  
-            //参数说明：num 要格式化的数字 n 保留小数位      
-                num = String(num.toFixed(n));      
-            var re = /(-?\d+)(\d{3})/;      
+      /*
+       * 功能：
+        1.数字
+        2.非数字
+            2.1 aaa ;'';';' ll22  2.2.200
+            2.2 '100'
+        -----number（）
+        1)
+        2.2)
 
-            while(re.test(num)) {  
 
-                    num = num.replace(re,"$1,$2");  
+       */
+      function money(num) {
+        let newNum;
+        if (!Number(num)) return;
+        let value = (num + "").split(".");
+        switch (value.length) {
+          case 1:
+            newNum = num + ".00";
+            break;
+          case 2:
+            //   判断是否位2位小数点
+            newNum = value[1].length > 2 ? Number(num).toFixed(2) : num;
+            break;
+          default:
+            newNum = 0; //都不匹配则是0
+            break;
+        }
+        return newNum;
+      }
+      //   console.log(formatNum(100, 2));
+      console.log(money("aa"));
 
-            }  
+      /*
+            JS数字转字符串的方法(number to string)
+      一、双点解析
 
-            return num;  
+      10..toString();
+      二、括号先计算再转换
 
-        }   
+      (10).toString();
+      三、加空串
 
-        zero(1200.01999)
-        console.log(formatNum(100,2))
+      10 + ''*/
     </script>
-</body>
+  </body>
 </html>
